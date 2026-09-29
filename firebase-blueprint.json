@@ -1,0 +1,75 @@
+{
+  "entities": {
+    "VenueAudit": {
+      "title": "VenueAudit",
+      "description": "Completed or in-progress venue hardware and switch fabric audit",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "venueName": { "type": "string" },
+        "city": { "type": "string" },
+        "auditDate": { "type": "string" },
+        "targetSubnet": { "type": "string" },
+        "targetDriveFolderId": { "type": "string" },
+        "hubInChargeName": { "type": "string" },
+        "hubInChargeEmail": { "type": "string" },
+        "devicesCount": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "venueName", "city", "auditDate", "targetSubnet"]
+    },
+    "NetworkDevice": {
+      "title": "NetworkDevice",
+      "description": "Audited network device, switch, workstation, or endpoint",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "ip": { "type": "string" },
+        "mac": { "type": "string" },
+        "hostname": { "type": "string" },
+        "deviceType": { "type": "string" },
+        "status": { "type": "string" },
+        "latencyMs": { "type": "number" },
+        "cpuOrLaptopSerial": { "type": "string" },
+        "monitorSerial": { "type": "string" },
+        "sizeOfMonitor": { "type": "string" },
+        "keyboardSerial": { "type": "string" },
+        "coreSwitchInfo": { "type": "string" },
+        "coreSwitchType": { "type": "string" },
+        "edgeSwitchInfo": { "type": "string" },
+        "edgeSwitchType": { "type": "string" }
+      },
+      "required": ["id", "ip", "mac", "hostname", "deviceType"]
+    },
+    "UserAccount": {
+      "title": "UserAccount",
+      "description": "System user account and roles",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "user"] },
+        "status": { "type": "string" },
+        "assignedVenue": { "type": "string" },
+        "assignedCity": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "email", "role"]
+    }
+  },
+  "firestore": {
+    "/venueAudits/{auditId}": {
+      "schema": "VenueAudit",
+      "description": "Stores completed venue audits and hardware ledgers"
+    },
+    "/venueAudits/{auditId}/devices/{deviceId}": {
+      "schema": "NetworkDevice",
+      "description": "Stores audited devices for each venue"
+    },
+    "/users/{userId}": {
+      "schema": "UserAccount",
+      "description": "Stores user profiles and role assignments"
+    }
+  }
+}

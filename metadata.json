@@ -1,0 +1,6 @@
+{
+  "name": "NetScan & Hardware Asset Auditor",
+  "description": "Real-time network scanning tool and hardware inventory auditor with automatic Google Drive report sync.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
